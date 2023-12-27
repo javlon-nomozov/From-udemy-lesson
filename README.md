@@ -1,2 +1,2 @@
 # From-udemy-lesson
-I try udemy course to learn node js and upload codes day by day
+This code has been written by the time I started the repository
