@@ -1,0 +1,17 @@
+{
+  "name": "express-from-udemy-lesson",
+  "version": "1.0.0",
+  "description": "This code was written to learn express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Javlon Nomozov",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
