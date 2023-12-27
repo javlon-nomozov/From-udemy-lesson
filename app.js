@@ -3,12 +3,14 @@ const app = express();
 
 const bodyParser = require("body-parser");
 
+const users = ["user1", "user2"];
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/add-product',(req,res,next)=>{
-  console.log(req.body)
-  res.redirect('/')
-})
+app.use((req, res, next) => {
+  console.log(req.body);
+  console.log(`'${req.url}' => ${req.method}`);
+  next();
+});
 
 app.get("/", (req, res) => {
   res.send(
