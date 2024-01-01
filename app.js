@@ -1,3 +1,4 @@
+const {join:path}=require('path')
 const express = require("express");
 const app = express();
 
@@ -5,8 +6,11 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(require('./routers/admin'))
-app.use(require('./routers/shop'))
+const admin = require('./routers/admin')
+const shop = require('./routers/shop')
+
+app.use('/admin',admin)
+app.use('/shop',shop)
 
 app.get("/", (req, res) => {
   res.send(
@@ -26,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 app.all('*',(req,res)=>{
-  res.status(404).send('<h1>404 Page not found</h1>')
+  res.status(404).sendFile(path(__dirname,'views','404.html'))
 })
 
 const PORT = 3000;
