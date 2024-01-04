@@ -43,7 +43,8 @@ app.use(shop);
 // });
 
 app.all("*", (req, res) => {
-  res.status(404).sendFile(path(rootDir, "views", "404.html"));
+  res.render("404", { docTitle: "Page Not Found"});
+  // res.status(404).sendFile(path(rootDir, "views", "404.html"));
 });
 
 const PORT = 3000;

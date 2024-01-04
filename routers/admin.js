@@ -8,8 +8,11 @@ const router = Router();
 const products = [];
 
 router.get("/add-product", (req, res, next) => {
-  console.log(products);
-  res.sendFile(path(rootDir, "views", "add-product.html"));
+  res.render("add-product", {
+    docTitle: "Add Product",
+    path: req.baseUrl + req.url,
+  });
+  // res.sendFile(path(rootDir, "views", "add-product.html"));
 });
 
 router.post("/add-product", (req, res, next) => {
