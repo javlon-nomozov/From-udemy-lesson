@@ -1,8 +1,15 @@
-const {Router}=require('express')
+const { Router } = require("express");
 
-const router = Router()
+const rootDir = require("../utils/path");
+const { products } = require("./admin");
+const { join: path } = require("path");
+
+const router = Router();
+
 router.get("/", (req, res, next) => {
-  res.send('<h1>Shop page </h1>');
+  console.log({ products });
+  res.render("shop", { prods: products, docTitle: "Shop" });
+  // res.sendFile(path(rootDir, "views", "shop.html"));
 });
 
 router.post("/product", (req, res, next) => {
@@ -10,4 +17,4 @@ router.post("/product", (req, res, next) => {
   res.redirect("/");
 });
 
-module.exports = router
+module.exports = router;
