@@ -8,7 +8,7 @@ const rootDir = require("./utils/path");
 
 const app = express();
 
-app.engine("hbs", expressHbs({extname:'.hbs'}));
+app.engine("hbs", expressHbs({ extname: ".hbs" }));
 
 app.set("view engine", "hbs");
 //       views as views / templates
@@ -27,23 +27,6 @@ const shop = require("./routers/shop");
 
 app.use("/admin", adminData.routes);
 app.use(shop);
-
-// app.get("/", (req, res) => {
-//   res.send(
-//     `<html>
-//     <head>
-//       <title>Hello from express js server</title>
-//     </head>
-//     <body>
-//       <h1>Hello from express page</h1>
-//       <!-- <form method="post" action="/create-user">
-//       <input name="name" placeholder="enter your name">
-//       <input type="submit" value="Submit">
-//       </form>-->
-//     </body>
-//     </html>`
-//   );
-// });
 
 app.all("*", (req, res) => {
   res.render("404", { docTitle: "Page Not Found" });
