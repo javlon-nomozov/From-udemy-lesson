@@ -11,6 +11,9 @@ router.get("/add-product", (req, res, next) => {
   res.render("add-product", {
     docTitle: "Add Product",
     path: req.baseUrl + req.url,
+    formsCSS: true,
+    productCSS: true,
+    activeAddProduct: true
   });
   // res.sendFile(path(rootDir, "views", "add-product.html"));
 });
