@@ -1,8 +1,8 @@
 <main>
   <h1>My Products</h1>
   <p>List of all the products...</p>
-  <div class="grid">
-    {{#if prods}}
+  {{#if prods}}
+    <div class="grid">
       {{#each prods}}
         <article class="card product-item">
           <header class="card__header">
@@ -25,9 +25,9 @@
         </article>
 
       {{/each}}
-    {{else}}
-      <h1>No product</h1>
-    {{/if}}
-  </div>
+    </div>
+  {{else}}
+    <h1>No product</h1>
+  {{/if}}
 
 </main>
