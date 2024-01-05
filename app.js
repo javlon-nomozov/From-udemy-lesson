@@ -1,13 +1,16 @@
 const { join: path } = require("path");
 const express = require("express");
 
-const rootDir = require("./utils/path");
-
 const bodyParser = require("body-parser");
+const { engine: expressHbs } = require("express-handlebars");
+
+const rootDir = require("./utils/path");
 
 const app = express();
 
-app.set("view engine", "pug");
+app.engine("hbs", expressHbs({extname:'.hbs'}));
+
+app.set("view engine", "hbs");
 //       views as views / templates
 app.set("views", "views");
 
@@ -43,7 +46,7 @@ app.use(shop);
 // });
 
 app.all("*", (req, res) => {
-  res.render("404", { docTitle: "Page Not Found"});
+  res.render("404", { docTitle: "Page Not Found" });
   // res.status(404).sendFile(path(rootDir, "views", "404.html"));
 });
 
