@@ -1,2 +1,2 @@
 # From-udemy-lesson
-Day 5 with express-handlebars
+Day 5 with EJS
