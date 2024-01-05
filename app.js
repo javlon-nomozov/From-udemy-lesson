@@ -2,16 +2,12 @@ const { join: path } = require("path");
 const express = require("express");
 
 const bodyParser = require("body-parser");
-const { engine: expressHbs } = require("express-handlebars");
 
 const rootDir = require("./utils/path");
 
 const app = express();
 
-app.engine("hbs", expressHbs({ extname: ".hbs" }));
-
-app.set("view engine", "hbs");
-//       views as views / templates
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use((req, res, next) => {
@@ -29,8 +25,10 @@ app.use("/admin", adminData.routes);
 app.use(shop);
 
 app.all("*", (req, res) => {
-  res.render("404", { docTitle: "Page Not Found" });
-  // res.status(404).sendFile(path(rootDir, "views", "404.html"));
+  res.render("404", {
+    docTitle: "Page Not Found",
+    path: req.baseUrl + req.url,
+  });
 });
 
 const PORT = 3000;
