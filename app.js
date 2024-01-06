@@ -10,26 +10,21 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-app.use((req, res, next) => {
-  console.log(req.method, req.url);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(req.method, req.url);
+//   next();
+// });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path(rootDir, "public")));
 
-const adminData = require("./routers/admin");
-const shop = require("./routers/shop");
+const adminRoute = require("./routers/admin");
+const shopRoute = require("./routers/shop");
+const errorRoute = require('./routers/404')
+app.use("/admin", adminRoute);
+app.use(shopRoute);
 
-app.use("/admin", adminData.routes);
-app.use(shop);
-
-app.all("*", (req, res) => {
-  res.render("404", {
-    docTitle: "Page Not Found",
-    path: req.baseUrl + req.url,
-  });
-});
+app.use(errorRoute);
 
 const PORT = 3000;
 const HOST_NAME = "localhost";
