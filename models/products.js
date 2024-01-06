@@ -20,6 +20,7 @@ module.exports = class Product {
       });
     });
   }
+
   static async fetchAll(cb) {
     const p = path(rootDir, "data", "products.json");
     fs.readFile(p, async (err, fileContent) => {
