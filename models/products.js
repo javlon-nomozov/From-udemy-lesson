@@ -21,9 +21,9 @@ module.exports = class Product {
     });
   }
 
-  static async fetchAll(cb) {
+  static fetchAll(cb) {
     const p = path(rootDir, "data", "products.json");
-    fs.readFile(p, async (err, fileContent) => {
+    fs.readFile(p, (err, fileContent) => {
       let result = [];
       if (!err) {
         result = JSON.parse(fileContent);

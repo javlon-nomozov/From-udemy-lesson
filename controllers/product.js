@@ -7,14 +7,14 @@ module.exports.getAddProduct = (req, res, next) => {
   });
 };
 
-module.exports.postAddProduct = async (req, res, next) => {
-  const product = await new Product(req.body.title).save();
+module.exports.postAddProduct = (req, res, next) => {
+  const product = new Product(req.body.title).save();
   console.log({ product });
   res.redirect("/");
 };
 
-module.exports.getProducts = async (req, res, next) => {
-  const products = await Product.fetchAll((products) => {
+module.exports.getProducts = (req, res, next) => {
+  const products = Product.fetchAll((products) => {
     console.log({ products });
     res.render("shop", {
       prods: products,
