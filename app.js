@@ -2,13 +2,12 @@ const { join: path } = require("path");
 const express = require("express");
 
 const bodyParser = require("body-parser");
-
 const rootDir = require("./utils/path");
 
 const app = express();
 
-app.set("view engine", "ejs");
-app.set("views", "views");
+app.set("view engine", "pug");
+app.set("views", "templates");
 
 app.use((req, res, next) => {
   console.log(req.method, req.url);
@@ -18,11 +17,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path(rootDir, "public")));
 
-const adminData = require("./routers/admin");
-const shop = require("./routers/shop");
+const usersRoute = require('./routers/users')
 
-app.use("/admin", adminData.routes);
-app.use(shop);
+app.use(usersRoute)
 
 app.all("*", (req, res) => {
   res.render("404", {
